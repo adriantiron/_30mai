@@ -1,19 +1,30 @@
 package proj.sbe;
 
+import org.apache.storm.task.OutputCollector;
+import org.apache.storm.task.TopologyContext;
+import org.apache.storm.topology.OutputFieldsDeclarer;
+import org.apache.storm.topology.base.BaseRichBolt;
+import org.apache.storm.tuple.Tuple;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Bolt1 { // role: filter based on the "company" field
+public class Bolt1 extends BaseRichBolt { // role: filter based on the "company" field
+
+    private OutputCollector _collector;
 
     // these lists will store the values from the input filter based on the operator
     private List<String> companyFilter = new ArrayList<>();
     private List<String> companyNotFilter = new ArrayList<>();
     //TODO subscriptions.txt: company must have only "=" and "!="
 
-    public void process(List<HashMap<String, String>> publications, String filter) {
+    private void process(List<HashMap<String, String>> publications, String filter) {
         // take the input filter and add to the filter lists
         processFilter(filter);
 
@@ -38,7 +49,7 @@ public class Bolt1 { // role: filter based on the "company" field
         callBolt2(publications, filter);
     }
 
-    public void processFilter(String filter) {
+    private void processFilter(String filter) {
         Pattern pattern = Pattern.compile("company(=|!=)(.+?(,|$))");
         Matcher matcher = pattern.matcher(filter);
         while (matcher.find()) {
@@ -56,7 +67,7 @@ public class Bolt1 { // role: filter based on the "company" field
         }
     }
 
-    public void callBolt2(List<HashMap<String, String>> publications, String filter) {
+    private void callBolt2(List<HashMap<String, String>> publications, String filter) {
         for (HashMap<String, String> publication : publications) {
             //System.out.println(publication);
         }
@@ -64,4 +75,30 @@ public class Bolt1 { // role: filter based on the "company" field
         bolt2.process(publications, filter);
     }
 
+    @Override
+    public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
+        _collector = collector;
+    }
+
+    @Override
+    public void execute(Tuple input) {
+        HashMap<String, String> tuple = (HashMap<String, String>)input.getValueByField("stock");
+        System.out.println(tuple);
+        try {
+            FileWriter myWriter = new FileWriter("temp_console.txt");
+            myWriter.append("RUN\n").append(String.valueOf(tuple));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void declareOutputFields(OutputFieldsDeclarer declarer) {
+
+    }
+
+    @Override
+    public void cleanup() {
+        System.out.println("Topology Result:");
+    }
 }

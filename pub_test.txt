@@ -1,0 +1,6 @@
+{company=GOOGLE, stockValue=91.74441532555403, change=0.0, variation=0.0, date=Sat Jan 01 00:00:00 EET 2000}
+{company=APPLE, stockValue=602.2952917594188, change=0.0, variation=0.0, date=Sat Jan 01 00:00:00 EET 2000}
+{company=MICROSOFT, stockValue=97.03883178362696, change=0.0, variation=0.0, date=Sat Jan 01 00:00:00 EET 2000}
+{company=IBM, stockValue=0.0, change=0.0, variation=NaN, date=Sat Jan 01 00:00:00 EET 2000}
+{company=ORACLE, stockValue=641.7957575595128, change=0.0, variation=0.0, date=Sat Jan 01 00:00:00 EET 2000}
+{company=GOOGLE, stockValue=98.24097046460591, change=6.496555139051871, variation=0.06612877609339618, date=Sun Jan 02 00:00:00 EET 2000}
