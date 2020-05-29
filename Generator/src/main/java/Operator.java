@@ -3,7 +3,8 @@ public enum Operator {
     GTEQ(">="),
     L("<"),
     LEQ("<="),
-    EQ("=")
+    EQ("="),
+    NEQ("!=")
     ;
 
     private String operatorString;

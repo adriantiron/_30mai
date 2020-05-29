@@ -6,7 +6,7 @@ public class PublicationGenerationParams {
     private double maxStockValue = 1000D;
     private Date startingDate = new Date(100, 0, 1);
     private int daysBetween = 1;
-    private int publicationCount = 5000;
+    private int publicationCount = 10000;
     private double maxChangePercentage = 0.1D;
 
     public PublicationGenerationParams(double minStockValue, double maxStockValue, Date startingDate,

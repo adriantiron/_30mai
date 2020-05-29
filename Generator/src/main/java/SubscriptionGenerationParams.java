@@ -3,11 +3,11 @@ import java.util.Date;
 public class SubscriptionGenerationParams {
 
     private PublicationGenerationParams publicationParams;
-    private double companyPercentage = 0.7D;
+    private double companyPercentage = 0.5D;
     private double stockValuePercentage = 0.5D;
     private double changePercentage = 0.5D;
-    private double variationPercentage = 0.3D;
-    private double datePercentage = 0.6D;
+    private double variationPercentage = 0.5D;
+    private double datePercentage = 0.5D;
     private Date endDate;
     private int subscriptionCount = 10000;
     private double equalCompanyPercentage = 0.5D;

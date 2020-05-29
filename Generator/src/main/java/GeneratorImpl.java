@@ -70,8 +70,7 @@ public class GeneratorImpl implements Generator {
                     companyFilter = new Filter(Operator.EQ, Company.values()[companyIndex], "company");
                     equalUpdate = true;
                 } else {
-                    int operatorIndex = random.nextInt(Operator.values().length - 1);
-                    companyFilter = new Filter(Operator.values()[operatorIndex], Company.values()[companyIndex], "company");
+                    companyFilter = new Filter(Operator.NEQ, Company.values()[companyIndex], "company");
                 }
 
                 if (companyNumber < companyTotal) {
@@ -155,8 +154,7 @@ public class GeneratorImpl implements Generator {
                         companyFilter = new Filter(Operator.EQ, Company.values()[companyIndex], "company");
                         equalUpdate = true;
                     } else {
-                        int operatorIndex = random.nextInt(Operator.values().length - 1);
-                        companyFilter = new Filter(Operator.values()[operatorIndex], Company.values()[companyIndex], "company");
+                        companyFilter = new Filter(Operator.NEQ, Company.values()[companyIndex], "company");
                     }
 
                     if (subscription.contains("company") && equalUpdate && !subscription.hasEq("company")) {
